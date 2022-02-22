@@ -1,0 +1,263 @@
+{
+    "_version": "1.17.0",
+    "sap.app": {
+        "id": "oup.ptp.zptppst",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "1.0.0"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "tags": {
+            "keywords": []
+        },
+        "resources": "resources.json",
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZPTP_C_PO_SUMRY_CDS/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZPTP_C_PO_SUMRY_CDS_VAN",
+                        "annotation"
+                    ],
+                    "localUri": "localService/metadata.xml"
+                }
+            },
+            "ZPTP_C_PO_SUMRY_CDS_VAN": {
+                "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZPTP_C_PO_SUMRY_CDS_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/ZPTP_C_PO_SUMRY_CDS_VAN.xml"
+                }
+            },
+            "annotation": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation.xml",
+                "settings": {
+                    "localUri": "annotations/annotation.xml"
+                }
+            }
+        },
+        "offline": false,
+        "sourceTemplate": {
+            "id": "ui5template.smartTemplate",
+            "version": "1.40.12"
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        },
+        "supportedThemes": [
+            "sap_hcb",
+            "sap_belize",
+            "sap_fiori_3"
+        ]
+    },
+    "sap.ui5": {
+        "resources": {
+            "js": [],
+            "css": []
+        },
+        "dependencies": {
+            "minUI5Version": "1.65.0",
+            "libs": {
+                "sap.ui.core": {
+                    "lazy": false
+                },
+                "sap.ui.generic.app": {
+                    "lazy": false
+                },
+                "sap.suite.ui.generic.template": {
+                    "lazy": false
+                }
+            },
+            "components": {}
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "@i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/i18n.properties"
+            },
+            "i18n|sap.suite.ui.generic.template.ListReport|ZPTP_C_PO_SUMRY": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/ListReport/ZPTP_C_PO_SUMRY/i18n.properties"
+            },
+            "i18n|sap.suite.ui.generic.template.ObjectPage|ZPTP_C_PO_SUMRY": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "uri": "i18n/ObjectPage/ZPTP_C_PO_SUMRY/i18n.properties"
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            }
+        },
+        "extends": {
+            "extensions": {
+                "sap.ui.controllerExtensions": {
+                    "sap.suite.ui.generic.template.ListReport.view.ListReport": {
+                        "controllerName": "oup.ptp.zptppst.ext.controller.ListReportExt",
+                        "sap.ui.generic.app": {
+                            "ZPTP_C_PO_SUMRY": {
+                                "EntitySet": "ZPTP_C_PO_SUMRY",
+                                "Actions": {
+                                    "ZINF": {
+                                        "id": "ZINFButton",
+                                        "text": "ZINF",
+                                        "press": "ZINF",
+                                        "requiresSelection": true
+                                    },
+                                    "StockMovement": {
+                                        "id": "StockMovementButton",
+                                        "type": "Menu",
+                                        "text": "Stock Movement",
+                                        "press": "StockMovement",
+                                        "requiresSelection": true
+                                    },
+                                    "StockOverview": {
+                                        "id": "StockOverviewButton",
+                                        "text": "Stock Overview",
+                                        "press": "StockOverview",
+                                        "requiresSelection": true
+                                    },
+                                    "ReceiptAdvances": {
+                                        "id": "ReceiptAdvancesButton",
+                                        "text": "Receipt Advances",
+                                        "press": "ReceiptAdvances",
+                                        "requiresSelection": true
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "sap.suite.ui.generic.template.ObjectPage.view.Details": {
+                        "controllerName": "oup.ptp.zptppst.ext.controller.ObjectPageExt",
+                        "sap.ui.generic.app": {
+                            "ZPTP_C_PO_SUMRY": {
+                                "EntitySet": "ZPTP_C_PO_SUMRY",
+                                "Header": {
+                                    "Actions": {
+                                        "ZINF": {
+                                            "id": "ZINFButton",
+                                            "text": "ZINF",
+                                            "press": "ZINFObjectPage",
+                                            "requiresSelection": false
+                                        },
+                                        "StockMovement": {
+                                            "id": "StockMovementButton",
+                                            "text": "Stock Movement",
+                                            "press": "StockMovement",
+                                            "requiresSelection": false
+                                        },
+                                        "StockOverview": {
+                                            "id": "StockOverviewButton",
+                                            "text": "Stock Overview",
+                                            "press": "StockOverview",
+                                            "requiresSelection": false
+                                        },
+                                        "ReceiptAdvances": {
+                                            "id": "ReceiptAdvancesButton",
+                                            "text": "Receipt Advances",
+                                            "press": "ReceiptAdvances",
+                                            "requiresSelection": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "sap.ui.viewExtensions": {
+                    "sap.suite.ui.generic.template.ListReport.view.ListReport": {},
+                    "sap.suite.ui.generic.template.ObjectPage.view.Details": {}
+                }
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        }
+    },
+    "sap.ui.generic.app": {
+        "_version": "1.3.0",
+        "settings": {
+            "forceGlobalRefresh": false,
+            "objectPageHeaderType": "Dynamic",
+            "con`siderAnalyticalParameters": true,
+            "showDraftToggle": false
+        },
+        "pages": {
+            "ListReport|ZPTP_C_PO_SUMRY": {
+                "entitySet": "ZPTP_C_PO_SUMRY",
+                "component": {
+                    "name": "sap.suite.ui.generic.template.ListReport",
+                    "list": true,
+                    "settings": {
+                        "tableSettings": {
+                            "type": "GridTable",
+                            "showFullScreenButton": true
+                        }
+                    }
+                },
+                "pages": {
+                    "ObjectPage|ZPTP_C_PO_SUMRY": {
+                        "entitySet": "ZPTP_C_PO_SUMRY",
+                        "defaultLayoutTypeIfExternalNavigation": "MidColumnFullScreen",
+                        "component": {
+                            "name": "sap.suite.ui.generic.template.ObjectPage",
+                            "settings": {
+                                "sections": {
+                                    "to_poitem::com.sap.vocabularies.UI.v1.LineItem": {
+                                        "tableSettings": {
+                                            "type": "GridTable"
+                                        }
+                                    },
+                                    "to_UnitCost::com.sap.vocabularies.UI.v1.LineItem": {
+                                        "tableSettings": {
+                                            "type": "GridTable"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "sap.platform.abap": {
+        "uri": ""
+    },
+    "sap.fiori": {
+        "registrationIds": [],
+        "archeType": "transactional"
+    },
+    "sap.platform.hcp": {
+        "uri": ""
+    }
+}
